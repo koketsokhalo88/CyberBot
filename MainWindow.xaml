@@ -1,0 +1,241 @@
+﻿ 
+<Window x:Class="CybersecurityChatbot.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Cybersecurity Awareness Bot" 
+        Height="700" Width="900"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanResize">
+
+    <Window.Background>
+        <SolidColorBrush Color="#0D1B2A"/>
+    </Window.Background>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" Background="#1A237E" Padding="15">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" 
+                           x:Name="LogoTextBlock"
+                           FontFamily="Consolas" 
+                           FontSize="10" 
+                           Foreground="#00BCD4"
+                           Text=""
+                           LineHeight="12"
+                           Margin="0,0,15,0"/>
+
+                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                    <TextBlock Text="CYBERSECURITY AWARENESS BOT" 
+                               FontSize="24" 
+                               FontWeight="Bold" 
+                               Foreground="White"/>
+                    <TextBlock Text="Protecting South Africa Online" 
+                               FontSize="14" 
+                               Foreground="#00BCD4"
+                               Margin="0,2,0,0"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right">
+                    <TextBlock x:Name="VoiceStatus" 
+                               Text="Voice: Ready" 
+                               Foreground="#66BB6A" 
+                               FontSize="11"
+                               Margin="0,0,0,3"/>
+                    <TextBlock x:Name="MemoryStatus" 
+                               Text="Memory: Active" 
+                               Foreground="#66BB6A" 
+                               FontSize="11"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- User Info Bar -->
+        <Border Grid.Row="1" Background="#1B263B" Padding="10" Margin="0,1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" 
+                           x:Name="UserInfoText" 
+                           Text="User: Not identified" 
+                           Foreground="#E0E1DD" 
+                           FontSize="13"
+                           VerticalAlignment="Center"
+                           Margin="0,0,15,0"/>
+
+                <TextBlock Grid.Column="1" 
+                           x:Name="CurrentTopicText" 
+                           Text="Topic: None" 
+                           Foreground="#FFA726" 
+                           FontSize="13"
+                           VerticalAlignment="Center"/>
+
+                <TextBlock Grid.Column="2" 
+                           x:Name="SentimentText" 
+                           Text="Mood: Neutral" 
+                           Foreground="#00BCD4" 
+                           FontSize="13"
+                           VerticalAlignment="Center"
+                           Margin="0,0,15,0"/>
+
+                <Button Grid.Column="3" 
+                        x:Name="ClearMemoryButton"
+                        Content="Clear Memory" 
+                        Padding="10,5"
+                        Click="ClearMemoryButton_Click">
+                    <Button.Background>
+                        <SolidColorBrush Color="#EF5350"/>
+                    </Button.Background>
+                    <Button.Foreground>White</Button.Foreground>
+                    <Button.FontWeight>Bold</Button.FontWeight>
+                </Button>
+            </Grid>
+        </Border>
+
+        <!-- Chat Area -->
+        <Border Grid.Row="2" Background="#0D1B2A" Margin="10">
+            <ScrollViewer x:Name="ChatScrollViewer" 
+                          VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Disabled">
+                <StackPanel x:Name="ChatStackPanel" Margin="10">
+                    <Border Background="#2E7D32" 
+                            CornerRadius="15,15,15,0" 
+                            Padding="15,10" 
+                            Margin="5,5,50,5"
+                            Opacity="0.9">
+                        <TextBlock Text="Welcome to the Cybersecurity Awareness Bot! I am here to help you stay safe online. What is your name?" 
+                                   Foreground="White" 
+                                   FontSize="14" 
+                                   TextWrapping="Wrap"/>
+                    </Border>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+
+        <!-- Quick Topic Buttons -->
+        <Border Grid.Row="3" Background="#1B263B" Padding="10">
+            <WrapPanel HorizontalAlignment="Center">
+                <TextBlock Text="Quick Topics: " 
+                           Foreground="#E0E1DD" 
+                           VerticalAlignment="Center" 
+                           Margin="0,0,10,0"/>
+                <Button Content="Password" Padding="15,8" Margin="5" Click="QuickTopicButton_Click" Tag="password">
+                    <Button.Background>
+                        <SolidColorBrush Color="#00BCD4"/>
+                    </Button.Background>
+                    <Button.Foreground>White</Button.Foreground>
+                    <Button.FontWeight>Bold</Button.FontWeight>
+                </Button>
+                <Button Content="Phishing" Padding="15,8" Margin="5" Click="QuickTopicButton_Click" Tag="phishing">
+                    <Button.Background>
+                        <SolidColorBrush Color="#00BCD4"/>
+                    </Button.Background>
+                    <Button.Foreground>White</Button.Foreground>
+                    <Button.FontWeight>Bold</Button.FontWeight>
+                </Button>
+                <Button Content="Malware" Padding="15,8" Margin="5" Click="QuickTopicButton_Click" Tag="malware">
+                    <Button.Background>
+                        <SolidColorBrush Color="#00BCD4"/>
+                    </Button.Background>
+                    <Button.Foreground>White</Button.Foreground>
+                    <Button.FontWeight>Bold</Button.FontWeight>
+                </Button>
+                <Button Content="Browsing" Padding="15,8" Margin="5" Click="QuickTopicButton_Click" Tag="browsing">
+                    <Button.Background>
+                        <SolidColorBrush Color="#00BCD4"/>
+                    </Button.Background>
+                    <Button.Foreground>White</Button.Foreground>
+                    <Button.FontWeight>Bold</Button.FontWeight>
+                </Button>
+                <Button Content="Social Eng." Padding="15,8" Margin="5" Click="QuickTopicButton_Click" Tag="social engineering">
+                    <Button.Background>
+                        <SolidColorBrush Color="#00BCD4"/>
+                    </Button.Background>
+                    <Button.Foreground>White</Button.Foreground>
+                    <Button.FontWeight>Bold</Button.FontWeight>
+                </Button>
+                <Button Content="Privacy" Padding="15,8" Margin="5" Click="QuickTopicButton_Click" Tag="privacy">
+                    <Button.Background>
+                        <SolidColorBrush Color="#00BCD4"/>
+                    </Button.Background>
+                    <Button.Foreground>White</Button.Foreground>
+                    <Button.FontWeight>Bold</Button.FontWeight>
+                </Button>
+                <Button Content="Help" Padding="15,8" Margin="5" Click="QuickTopicButton_Click" Tag="help">
+                    <Button.Background>
+                        <SolidColorBrush Color="#FFA726"/>
+                    </Button.Background>
+                    <Button.Foreground>White</Button.Foreground>
+                    <Button.FontWeight>Bold</Button.FontWeight>
+                </Button>
+            </WrapPanel>
+        </Border>
+
+        <!-- Input Area -->
+        <Border Grid.Row="4" Background="#1A237E" Padding="15">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox Grid.Column="0" 
+                         x:Name="UserInputTextBox"
+                         Background="#1B263B"
+                         Foreground="White"
+                         BorderBrush="#00BCD4"
+                         BorderThickness="2"
+                         Padding="12"
+                         FontSize="14"
+                         VerticalContentAlignment="Center"
+                         KeyDown="UserInputTextBox_KeyDown"
+                         Margin="0,0,10,0"/>
+
+                <Button Grid.Column="1" 
+                        x:Name="SendButton"
+                        Content="Send" 
+                        Padding="15,8"
+                        Margin="0,0,5,0"
+                        Click="SendButton_Click">
+                    <Button.Background>
+                        <SolidColorBrush Color="#00BCD4"/>
+                    </Button.Background>
+                    <Button.Foreground>White</Button.Foreground>
+                    <Button.FontWeight>Bold</Button.FontWeight>
+                </Button>
+
+                <Button Grid.Column="2" 
+                        x:Name="VoiceToggleButton"
+                        Content="Voice ON" 
+                        Padding="15,8"
+                        Click="VoiceToggleButton_Click">
+                    <Button.Background>
+                        <SolidColorBrush Color="#66BB6A"/>
+                    </Button.Background>
+                    <Button.Foreground>White</Button.Foreground>
+                    <Button.FontWeight>Bold</Button.FontWeight>
+                </Button>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
+    
